@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
 import { setPizzaSize } from "../actions/index";
 
 function mapDispatchToProps(dispatch) {
@@ -34,7 +33,7 @@ class PizzaSize extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <div>
-          <label htmlFor="title">Select a pizza size</label>
+          <label htmlFor="page-title">Select a pizza size</label>
           <select
               value={size}
               onChange={this.handleChange}>
