@@ -15,7 +15,7 @@ const initialState = {
         "Green Peppers",
         "Pineapple",
         "Spinach",
-    ];
+    ],
 };
 
 function rootReducer(state = initialState, action) {
