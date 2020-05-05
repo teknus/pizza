@@ -21,21 +21,28 @@ const initialState = {
         "medium",
         "large"
     ],
+    maxToppings: 0,
     crusts:[
         "thin",
         "thick"
-    ]
+    ],
+    sizeMaxToppings: {
+        "small": 5,
+        "medium": 7,
+        "large": 9,
+    },
 };
 
 function rootReducer(state = initialState, action) {
     switch (action.type){
     case SET_PIZZA_SIZE:
         return Object.assign({}, state, {
-            size: action.payload
+            size: action.payload.size,
+            maxToppings: state.sizeMaxToppings[action.payload.size],
         });
     case SET_PIZZA_CRUST:
         return Object.assign({}, state, {
-            crust: action.payload
+            crust: action.payload.crust
         });
     case ADD_PIZZA_TOPPING:
         return Object.assign({}, state, {

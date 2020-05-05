@@ -6,10 +6,12 @@
 
 .page hr {
 	  height: 6px;
+    width: 160%;
 	  display: block;
 	  border: None;
 	  margin-bottom: 20pt;
-	  background:  linear-gradient(to right, #fafafb, #00a1ff);
+	  margin-left: 10pt;
+	  background: linear-gradient(to right, #f2d845, #ff1b00);
 }
 
 .gallery {
@@ -50,10 +52,8 @@
 	  font-family: "Open sans Semibold";
     color: #4a4a4a;
     font-size: 12pt;
-	  box-shadow: 1px 1px 5px 1px #00a1ff;
+	  box-shadow: 1px 1px 5px 1px #ff1b00;
 }
-
-
 
 h3 {
 	  color: #333030;
