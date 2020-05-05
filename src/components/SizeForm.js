@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setPizzaSize } from "../actions/index";
 import "./ingredients.css";
+import large from '../icons/svg/001-pizza-1.svg';
+import medium from '../icons/svg/002-pizza.svg';
+import small from '../icons/svg/003-pizza-2.svg';
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -43,6 +46,19 @@ class SizeFormComponent extends Component {
     this.props.setPizzaSize({ size });
     this.props.push("/crust");
   }
+
+
+    imageSize(size){
+        switch (size){
+            case "small":
+                return {size: small, alt: "small pizza icon"};
+            case "medium":
+                return {size: medium, alt: "medium pizza icon"};
+            default:
+                return {size: large, alt: "large pizza icon"};
+        }
+    }
+
   render() {
     const { size } = this.state;
     const { pizza } = this.props;
@@ -59,13 +75,15 @@ class SizeFormComponent extends Component {
           <div className="gallery">
               {pizza.sizes.map( s => {
                   let selected = s === size;
+                  let imageData = this.imageSize(s);
                   return <div
                              className={ selected ? "image selected" :"image"}
                              key={s}
                              value={s}
                              onClick={this.handleChange}>
+                      <img src={imageData.size} alt={imageData.alt}/>
                       <span className={"description"}>{s}</span>
-                  </div>
+               </div>
               })}
 
           </div>
