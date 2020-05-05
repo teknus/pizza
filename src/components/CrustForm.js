@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { setPizzaCrust } from "../actions/index";
+import { setPizzaCrust} from "../actions/index";
 import "./ingredients.css";
 
 function mapDispatchToProps(dispatch) {
   return {
-      setPizzaCrust: crust => dispatch(setPizzaCrust(crust))
+      setPizzaCrust: crust => dispatch(setPizzaCrust(crust)),
   };
 }
 
@@ -25,9 +25,17 @@ class SizeFormComponent extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.setPizzaCrust = props.setPizzaCrust;
   }
+
+    componentDidMount(){
+        let { crust } = this.state;
+        this.props.setPizzaCrust({ crust });
+    }
+
+
   handleChange(event) {
-      console.log( event.currentTarget.attributes["value"].value );
-      this.setState({ crust: event.currentTarget.attributes["value"].value });
+      let crust = event.currentTarget.attributes["value"].value 
+      this.props.setPizzaCrust({ crust });
+      this.setState({crust: crust});
   }
 
   handleSubmit(event) {
@@ -47,6 +55,7 @@ class SizeFormComponent extends Component {
                   <button onClick={this.handleSubmit}>I want a {this.state.crust} crust </button>
               </div>
           </div>
+          <p> Price: {pizza.totalPrice} </p>
           <hr/>
           <div className="gallery">
               {pizza.crusts.map( c => {

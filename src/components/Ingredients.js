@@ -20,24 +20,28 @@ class IngredientsFormComponent extends Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
+
+    componentDidMount(){
+        const { pizza } = this.props;
+        let value = pizza.toppings[0];
+        this.props.setPizzaIngredients({ value });
+        this.props.setPizzaIngredients({ value });
+    }
 
   handleChange(event) {
       event.preventDefault();
-      console.log(event.currentTarget.attributes["value"].value);
       let value = event.currentTarget.attributes["value"].value;
       this.props.setPizzaIngredients({ value });  }
 
-  handleSubmit(event) {
+  handleClick(event) {
     event.preventDefault();
-    let value = event.currentTarget.attributes["value"].value;
-    this.props.setPizzaIngredients({ value });
+    this.props.push("/checkout");
   }
 
   render() {
     const { pizza } = this.props;
-    console.log(pizza.maxToppings);
     return (
         <div className="page">
             <div className="nav">
@@ -47,10 +51,11 @@ class IngredientsFormComponent extends Component {
                            ? <span> Select at least 3 toppings</span>
                       : <span> You could select a max of {pizza.maxToppings} toppings</span>
                     }<br/>
-        <button type="submit" disabled={ pizza.ingredients.length > pizza.maxToppings || pizza.ingredients.length < 3}> <span> I want to order </span>
+        <button onClick={this.handleClick}  disabled={ pizza.ingredients.length > pizza.maxToppings || pizza.ingredients.length < 3}> <span> I want to order </span>
                     </button>
                 </div>
             </div>
+            <p> Price: {pizza.totalPrice} {pizza.ingredients.length > pizza.maxToppings || pizza.ingredients.length >= 3 ? ".Each additional topping costs $ 0,50" : '' }  </p>
         <hr/>
         <div className="gallery">
           {pizza.toppings.map(ingredient => {

@@ -5,7 +5,7 @@ import "./ingredients.css";
 
 function mapDispatchToProps(dispatch) {
   return {
-    setPizzaSize: size => dispatch(setPizzaSize(size))
+      setPizzaSize: size => dispatch(setPizzaSize(size)),
   };
 }
 
@@ -25,9 +25,16 @@ class SizeFormComponent extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.setPizzaSize = props.setPizzaSize;
   }
+
+    componentDidMount(){
+        let { size } = this.state;
+        this.props.setPizzaSize({ size });
+    }
+
   handleChange(event) {
-      console.log( event.currentTarget.attributes["value"].value );
-      this.setState({ size: event.currentTarget.attributes["value"].value });
+      let size = event.currentTarget.attributes["value"].value 
+      this.props.setPizzaSize({ size });
+      this.setState({ size: size });
   }
 
   handleSubmit(event) {
@@ -47,6 +54,7 @@ class SizeFormComponent extends Component {
                   <button onClick={this.handleSubmit}>I want a {this.state.size} pizza</button>
               </div>
           </div>
+          <p> Price: {pizza.totalPrice} </p>
           <hr/>
           <div className="gallery">
               {pizza.sizes.map( s => {

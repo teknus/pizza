@@ -1,4 +1,4 @@
-import { SET_PIZZA_SIZE, SET_PIZZA_CRUST, ADD_PIZZA_TOPPING, REMOVE_PIZZA_TOPPING, UPDATE_PIZZA_TOPPING } from "../constants/index";
+import { SET_PIZZA_SIZE, SET_PIZZA_CRUST, ADD_PIZZA_TOPPING, REMOVE_PIZZA_TOPPING, UPDATE_PIZZA_TOPPING , UPDATE_PRICE} from "../constants/index";
 
 export function setPizzaSize(payload) {
     return { type: SET_PIZZA_SIZE, payload };
@@ -19,3 +19,4 @@ export function addPizzaToppings (payload) {
 export function removePizzaToppings (payload) {
     return { type: REMOVE_PIZZA_TOPPING , payload};
 }
+
