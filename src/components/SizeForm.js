@@ -47,6 +47,7 @@ class SizeFormComponent extends Component {
                   <button onClick={this.handleSubmit}>I want a {this.state.size} pizza</button>
               </div>
           </div>
+          <hr/>
           <div className="gallery">
               {pizza.sizes.map( s => {
                   let selected = s === size;
