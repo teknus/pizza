@@ -47,6 +47,7 @@ class SizeFormComponent extends Component {
                   <button onClick={this.handleSubmit}>I want a {this.state.crust} crust </button>
               </div>
           </div>
+          <hr/>
           <div className="gallery">
               {pizza.crusts.map( c => {
                   let selected = c === crust;
