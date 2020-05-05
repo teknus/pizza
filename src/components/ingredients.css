@@ -1,0 +1,100 @@
+.page {
+	  width: 30%;
+	  padding-top: 70pt;
+	  padding-left: 25%;
+}
+
+.page hr {
+	  height: 6px;
+	  display: block;
+	  border: None;
+	  margin-bottom: 20pt;
+	  background:  linear-gradient(to right, #fafafb, #00a1ff);
+}
+
+.gallery {
+	  display: grid;
+	  grid-template-columns: repeat(3, minmax(220px, 10fr));
+	  grid-gap: 100px;
+	  align-items: stretch;
+}
+
+.page h2 {
+	  color: #333030;
+	  margin-left: 200pt;
+    margin-right: auto;
+    width: 12em
+}
+
+.image{
+ 	  box-sizing: border-box;
+	  width: 300px;
+	  height: 300px;
+	  box-shadow: 1px 1px 5px 1px #9b9b9b;
+}
+
+.image img {
+    position:relative;
+	  width: 300px;
+	  height: 300px;
+	  z-index: -1;
+}
+
+.page .description {
+	  font-family: "Open sans Semibold";
+    color: #4a4a4a;
+    font-size: 12pt;
+}
+
+.page .selected{
+	  font-family: "Open sans Semibold";
+    color: #4a4a4a;
+    font-size: 12pt;
+	  box-shadow: 1px 1px 5px 1px #00a1ff;
+}
+
+
+
+h3 {
+	  color: #333030;
+}
+
+.page .description {
+	  font-family: "Open sans Semibold";
+	  color: #4a4a4a;
+	  padding-top: 130pt;
+	  padding-left: 10pt;
+    font-size: 12pt;
+}
+
+.page .nav{
+	  top: 0;
+	  left: 0;
+	  padding-left: -40pt;
+	  overflow: hidden;
+	  position: fixed;
+	  width: 100%;
+	  background-color: #ffffff;
+	  box-shadow: 1px 1px 5px 1px #9b9b9b;
+}
+
+.page .msg{
+	  color: #4a4a4a;
+    margin-left: 80%;
+    margin-top: -40px;
+    top: 20%;
+	  margin-left: 75%;
+    margin-right: auto;
+    padding-bottom: 40px;
+    width: 20em
+}
+.page .order {
+	  color: #4a4a4a;
+    margin-left: 80%;
+    margin-top: -45px;
+    top: 20%;
+	  margin-left: 75%;
+    margin-right: auto;
+    padding-bottom: 30px;
+    width: 20em
+}

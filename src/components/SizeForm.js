@@ -1,11 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setPizzaSize } from "../actions/index";
+import "./ingredients.css";
 
 function mapDispatchToProps(dispatch) {
   return {
     setPizzaSize: size => dispatch(setPizzaSize(size))
   };
+}
+
+function mapStateToProps(state) {
+    return {
+        pizza: state,
+    };
 }
 
 class SizeFormComponent extends Component {
@@ -19,8 +26,8 @@ class SizeFormComponent extends Component {
     this.setPizzaSize = props.setPizzaSize;
   }
   handleChange(event) {
-     console.log(event.target.value);
-    this.setState({ size: event.target.value });
+      console.log( event.currentTarget.attributes["value"].value );
+      this.setState({ size: event.currentTarget.attributes["value"].value });
   }
 
   handleSubmit(event) {
@@ -31,31 +38,37 @@ class SizeFormComponent extends Component {
   }
   render() {
     const { size } = this.state;
+    const { pizza } = this.props;
     return (
-      <div>
-      <form onSubmit={this.handleSubmit}>
-        <div>
-            <label htmlFor="page-title">Size selected {size} </label>
-          <select
-              value={size}
-              onChange={this.handleChange}>
-              <option value="small">Small</option>
-              <option value="medium">Medium</option>
-              <option value="large">Large</option>
-          </select>
-          <br/>
-        </div>
-          <button type="submit">SAVE</button>
-          <br/>
-      </form>
+      <div className="page">
+          <div className="nav">
+              <h2>Pizza Size</h2>
+              <div className="msg">
+                  <button onClick={this.handleSubmit}>I want a {this.state.size} pizza</button>
+              </div>
+          </div>
+          <div className="gallery">
+              {pizza.sizes.map( s => {
+                  let selected = s === size;
+                  return <div
+                             className={ selected ? "image selected" :"image"}
+                             key={s}
+                             value={s}
+                             onClick={this.handleChange}>
+                      <span className={"description"}>{s}</span>
+                  </div>
+              })}
+
+          </div>
+
       </div>
     );
   }
 }
 
 const SizeForm = connect(
-  null,
-  mapDispatchToProps
+    mapStateToProps,
+    mapDispatchToProps
 )(SizeFormComponent);
 
 export default SizeForm;

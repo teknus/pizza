@@ -16,6 +16,15 @@ const initialState = {
         "Pineapple",
         "Spinach",
     ],
+    sizes:[
+        "small",
+        "medium",
+        "large"
+    ],
+    crusts:[
+        "thin",
+        "thick"
+    ]
 };
 
 function rootReducer(state = initialState, action) {

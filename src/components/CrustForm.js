@@ -1,15 +1,21 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
 import { setPizzaCrust } from "../actions/index";
+import "./ingredients.css";
 
 function mapDispatchToProps(dispatch) {
   return {
-    setPizzaCrust: crust => dispatch(setPizzaCrust(crust))
+      setPizzaCrust: crust => dispatch(setPizzaCrust(crust))
   };
 }
 
-class CrustFormComponent extends Component {
+function mapStateToProps(state) {
+    return {
+        pizza: state,
+    };
+}
+
+class SizeFormComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,10 +23,11 @@ class CrustFormComponent extends Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.setPizzaCrust = props.setPizzaCrust;
   }
   handleChange(event) {
-     console.log(event.target.value);
-    this.setState({ crust: event.target.value });
+      console.log( event.currentTarget.attributes["value"].value );
+      this.setState({ crust: event.currentTarget.attributes["value"].value });
   }
 
   handleSubmit(event) {
@@ -31,26 +38,37 @@ class CrustFormComponent extends Component {
   }
   render() {
     const { crust } = this.state;
+    const { pizza } = this.props;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div>
-          <label htmlFor="title">Select a pizza crust</label>
-          <select
-              value={crust}
-              onChange={this.handleChange}>
-              <option value="thin">Thin</option>
-              <option value="thick">Thick</option>
-          </select>
-        </div>
-          <button type="submit">SAVE</button>
-      </form>
+      <div className="page">
+          <div className="nav">
+              <h2>Pizza Crust</h2>
+              <div className="msg">
+                  <button onClick={this.handleSubmit}>I want a {this.state.crust} crust </button>
+              </div>
+          </div>
+          <div className="gallery">
+              {pizza.crusts.map( c => {
+                  let selected = c === crust;
+                  return <div
+                             className={ selected ? "image selected" :"image"}
+                             key={c}
+                             value={c}
+                             onClick={this.handleChange}>
+                      <span className={"description"}>{c}</span>
+                  </div>
+              })}
+
+          </div>
+
+      </div>
     );
   }
 }
 
-const CrustForm = connect(
-  null,
-  mapDispatchToProps
-)(CrustFormComponent);
+const SizeForm = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SizeFormComponent);
 
-export default CrustForm;
+export default SizeForm;
