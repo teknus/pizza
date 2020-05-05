@@ -5,51 +5,76 @@ import { updatePizzaToppings } from "../actions/index";
 
 function mapDispatchToProps(dispatch) {
   return {
-     setPizzaIngredients: ingredients => dispatch(updatePizzaToppings(ingredients))
+     setPizzaIngredients: ingredients => dispatch(updatePizzaToppings(ingredients)),
   };
+}
+
+function mapStateToProps(state) {
+    return {
+        pizza: state,
+    };
 }
 
 class IngredientsFormComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ingredients: "thin"
+        ingredients: [
+            "Pepperoni",
+            "Mushrooms",
+            "Onions",
+            "Sausage",
+            "Bacon",
+            "Extra Cheese",
+            "Black Olives",
+            "Green Peppers",
+            "Pineapple",
+            "Spinach",
+        ],
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   handleChange(event) {
-     console.log(event.target.value);
-    this.setState({ ingredients: event.target.value });
-  }
+      event.preventDefault();
+      let value = event.currentTarget.attributes["value"].value
+      this.props.setPizzaIngredients({ value });  }
 
   handleSubmit(event) {
     event.preventDefault();
-    const { ingredients } = this.state;
-    this.props.setPizzaIngredients({ ingredients });
-    this.props.push("/checkout");
+    let value = event.currentTarget.attributes["value"].value
+    this.props.setPizzaIngredients({ value });
   }
+
   render() {
     const { ingredients } = this.state;
+    const { pizza } = this.props;
     return (
-      <form onSubmit={this.handleSubmit}>
+        <div>
         <div>
           <label htmlFor="title">Select a pizza ingredients</label>
-          <select
-              value={ingredients}
-              onChange={this.handleChange}>
-              <option value="thin">Thin</option>
-              <option value="thick">Thick</option>
-          </select>
+          <ul>
+          {ingredients.map(ingredient => {
+                  return <li key={ingredient}><span onClick={this.handleChange} value={ingredient}> {ingredient} </span></li>
+          })}
+          </ul>
+
+          <ul>
+              {pizza.ingredients.map(ingredient => {
+                  return <li key={ingredient}><span onClick={this.handleChange} value={ingredient}> {ingredient} </span></li>
+              })}
+          </ul>
+
         </div>
-          <button type="submit">SAVE</button>
-      </form>
+       <button type="submit">SAVE</button>
+      </div>
     );
   }
 }
 
 const Ingredients = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(IngredientsFormComponent);
 
