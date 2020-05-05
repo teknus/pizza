@@ -2,17 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { updatePizzaToppings } from "../actions/index";
+import {imageIcon} from "../utils/index";
 import "./ingredients.css"
-import pepperoni from "../icons/png/009-pepperoni.png";
-import mushrooms from "../icons/png/008-mushroom.png";
-import onions  from "../icons/png/007-onion.png";
-import sausage from "../icons/png/006-sausage.png";
-import bacon from "../icons/png/005-bacon.png";
-import cheese from "../icons/png/004-cheese.png";
-import olives from "../icons/png/003-olive.png";
-import greenpeppers from "../icons/png/010-pepper.png";
-import pineapple from "../icons/png/002-pineapple.png";
-import spinach from "../icons/png/001-spinach.png";
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -50,31 +41,6 @@ class IngredientsFormComponent extends Component {
     this.props.push("/checkout");
   }
 
-    imageIcon(topping){
-        switch(topping){
-            case "Pepperoni":
-                return {icon: pepperoni, alt:"Peperoni icon"};
-            case "Mushrooms":
-                return {icon: mushrooms, alt:"Mushrooms icon"};
-            case "Onions":
-                return {icon: onions, alt:"Onions icon"};
-            case "Sausage":
-                return {icon: sausage, alt: "Sausage icon"};
-            case "Bacon":
-                return {icon: bacon, alt:"Bacon icon"};
-            case "Extra Cheese":
-                return {icon: cheese, alt:"Extra icon" };
-            case "Black Olives": 
-                return {icon: olives, alt:"Black olives icon"};
-            case "Green Peppers":
-                return {icon: greenpeppers, alt:"Green peppers icon"};
-            case "Pineapple":
-                return {icon: pineapple, alt: "Pineapple icon"};
-            default:
-                return {icon: spinach, alt: "Spinach icon"};
-        }
-    }
-
   render() {
     const { pizza } = this.props;
     return (
@@ -96,7 +62,7 @@ class IngredientsFormComponent extends Component {
         <div className="gallery">
           {pizza.toppings.map(ingredient => {
               let clName = pizza.ingredients.includes(ingredient);
-              let imageData = this.imageIcon(ingredient);
+              let imageData = imageIcon(ingredient);
               return (<div
                          className={clName ? "image selected" :"image"}
                          key={ingredient}
