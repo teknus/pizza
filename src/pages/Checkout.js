@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "../components/ingredients.css";
-import {imageIcon, imageSize} from "../utils/index";
+import {imageIcon, imageSize, imageCrust} from "../utils/index";
 
 function mapStateToProps(state) {
     return {
@@ -14,6 +14,7 @@ class CheckoutPage extends Component {
     render() {
         const { pizza } = this.props;
         const imageData  = imageSize(pizza.size);
+        const imageDataCrust  = imageCrust(pizza.crust);
         return (
             <div className="page">
                 <div className="nav">
@@ -42,6 +43,7 @@ class CheckoutPage extends Component {
                         className={"image"}
                         key={pizza.crust}
                         value={pizza.crust}>
+                        <img src={imageDataCrust.thickness} alt={imageDataCrust.alt}/>
                         <span className={"description"}>{pizza.crust}</span>
                     </div>
                 </div>
