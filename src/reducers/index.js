@@ -16,6 +16,15 @@ const initialState = {
         "Pineapple",
         "Spinach",
     ],
+    sizes:[
+        "small",
+        "medium",
+        "large"
+    ],
+    crusts:[
+        "thin",
+        "thick"
+    ]
 };
 
 function rootReducer(state = initialState, action) {
@@ -26,14 +35,14 @@ function rootReducer(state = initialState, action) {
         });
     case SET_PIZZA_CRUST:
         return Object.assign({}, state, {
-            size: action.payload
+            crust: action.payload
         });
     case ADD_PIZZA_TOPPING:
         return Object.assign({}, state, {
-            ingredients: state.toppings.concat(action.payload)
+            ingredients: state.ingredients.concat(action.payload)
         });
     case REMOVE_PIZZA_TOPPING:
-        let list =  state.toppings.filter(el => el !== action.payload);
+        let list =  state.ingredients.filter(el => el !== action.payload);
         return Object.assign({}, state, {
             ingredients: list
         });

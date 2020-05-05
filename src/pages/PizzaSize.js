@@ -1,57 +1,14 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { setPizzaSize } from "../actions/index";
+import React from "react";
+import SizeForm from "../components/SizeForm";
 
-function mapDispatchToProps(dispatch) {
-  return {
-    setPizzaSize: size => dispatch(setPizzaSize(size))
-  };
-}
-
-class PizzaSize extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      size: "small"
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  handleChange(event) {
-     console.log(event.target.value);
-    this.setState({ size: event.target.value });
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    const { size } = this.state;
-    this.props.setPizzaSize({ size });
-    this.props.history.push("/crust")
-  }
-  render() {
-    const { size } = this.state;
+const PizzaSize = (props) => {
     return (
-      <form onSubmit={this.handleSubmit}>
         <div>
-          <label htmlFor="page-title">Select a pizza size</label>
-          <select
-              value={size}
-              onChange={this.handleChange}>
-              <option value="small">Small</option>
-              <option value="medium">Medium</option>
-              <option value="large">Large</option>
-          </select>
+            <div>
+                <h2>Select Pizza Size</h2>
+                <SizeForm push={props.history.push}/>
+            </div>
+        </div>);
+};
 
-        </div>
-          <button type="submit">SAVE</button>
-      </form>
-    );
-  }
-}
-
-const SizeForm = connect(
-  null,
-  mapDispatchToProps
-)(PizzaSize);
-
-export default SizeForm;
+export default PizzaSize;
