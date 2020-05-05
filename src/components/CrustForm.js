@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { setPizzaCrust} from "../actions/index";
+import { imageCrust } from "../utils/index";
 import "./ingredients.css";
 
 function mapDispatchToProps(dispatch) {
@@ -60,11 +61,13 @@ class SizeFormComponent extends Component {
           <div className="gallery">
               {pizza.crusts.map( c => {
                   let selected = c === crust;
+                  let imageDataCrust = imageCrust(c);
                   return <div
                              className={ selected ? "image selected" :"image"}
                              key={c}
                              value={c}
                              onClick={this.handleChange}>
+                      <img src={imageDataCrust.thickness} alt={imageDataCrust.alt}/>
                       <span className={"description"}>{c}</span>
                   </div>
               })}

@@ -8,6 +8,10 @@ import olives from "../icons/png/003-olive.png";
 import greenpeppers from "../icons/png/010-pepper.png";
 import pineapple from "../icons/png/002-pineapple.png";
 import spinach from "../icons/png/001-spinach.png";
+
+import thin from "../icons/png/thin.png";
+import thick from "../icons/png/thick.png";
+
 import large from '../icons/svg/001-pizza-1.svg';
 import medium from '../icons/svg/002-pizza.svg';
 import small from '../icons/svg/003-pizza-2.svg';
@@ -50,4 +54,13 @@ export function imageSize(size){
     }
 }
 
+export function imageCrust(crust){
+    switch (crust){
+    case "thin":
+        return {thickness: thin, alt: "thin icon"};
+    default:
+        return {thickness: thick, alt: "thick icon"};
+    }
+
+}
 
