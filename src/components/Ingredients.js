@@ -55,7 +55,7 @@ class IngredientsFormComponent extends Component {
                     </button>
                 </div>
             </div>
-            <p> Price: {pizza.totalPrice} {pizza.ingredients.length > pizza.maxToppings || pizza.ingredients.length >= 3 ? ".Each additional topping costs $ 0,50" : '' }  </p>
+            <p> Price: {pizza.totalPrice} {pizza.ingredients.length >= pizza.maxToppings && pizza.ingredients.length > 3 ? ".Each additional topping costs $ 0,50" : '' }  </p>
         <hr/>
         <div className="gallery">
           {pizza.toppings.map(ingredient => {
