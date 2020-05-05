@@ -28,6 +28,15 @@
     width: 12em
 }
 
+.page p {
+	  color: #333030;
+}
+
+.page left-message{
+	  color: #333030;
+    text-indent : 50em;
+}
+
 .image{
  	  box-sizing: border-box;
 	  width: 300px;

@@ -49,13 +49,14 @@ class IngredientsFormComponent extends Component {
                 <div className={"order" }>
                     { pizza.ingredients.length <= pizza.maxToppings
                            ? <span> Select at least 3 toppings</span>
-                      : <span> You could select a max of {pizza.maxToppings} toppings</span>
+                           : <span> You could select a max of {pizza.maxToppings} toppings</span>
                     }<br/>
         <button onClick={this.handleClick}  disabled={ pizza.ingredients.length > pizza.maxToppings || pizza.ingredients.length < 3}> <span> I want to order </span>
                     </button>
                 </div>
             </div>
-            <p> Price: {pizza.totalPrice} {pizza.ingredients.length >= pizza.maxToppings && pizza.ingredients.length > 3 ? ".Each additional topping costs $ 0,50" : '' }  </p>
+        <p className={"left-message"}> { pizza.ingredients.length > 3 ? "   Each additional topping costs $ 0,50" : '' } </p>
+        <p> Price: {pizza.totalPrice} </p>
         <hr/>
         <div className="gallery">
           {pizza.toppings.map(ingredient => {
