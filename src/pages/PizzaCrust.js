@@ -3,12 +3,8 @@ import CrustForm from "../components/CrustForm";
 
 const PizzaCrust = (props) => {
     return (
-        <div>
-            <div>
-                <h2>Select Pizza Curst</h2>
-                <CrustForm push={props.history.push}/>
-            </div>
-        </div>)
+          <CrustForm push={props.history.push}/>
+        )
 };
 
 export default PizzaCrust;
