@@ -1,6 +1,6 @@
 ## Pizza 
 
-Hello, this is a pizza application the application flow is:
+Hello, this is a pizza application.
 
 ### Application flow
 
