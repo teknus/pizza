@@ -1,10 +1,10 @@
 ## Pizza 
 
+Hello, this is a pizza application the application flow is:
+
 ### Application flow
 
 ***
-
-Hello, this is a pizza application the application flow is:
 
 1. Select the pizza size
 2. Select the crust thickness
